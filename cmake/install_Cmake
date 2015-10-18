@@ -1,0 +1,12 @@
+1 sudo apt-get install software-properties-common
+2 sudo add-apt-repository ppa:george-edison55/cmake-3.x
+3 sudo apt-get update
+4 sudo apt-get install cmake
+
+--------- Build with gdb ------------
+cmake [src dir] -DCMAKE_BUILD_TYPE=Debug
+
+--------- Build Normal ------------
+cmake [src dir] -DCMAKE_BUILD_TYPE=Relese
+
+
