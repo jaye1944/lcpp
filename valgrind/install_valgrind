@@ -3,7 +3,7 @@ sudo apt-get install valgrind
 G_SLICE=always-malloc G_DEBUG=gc-friendly  valgrind -v --tool=memcheck --leak-check=full --num-callers=40 --log-file=valgrind.log $(which <program>) <arguments>
 
 ############# 
-valgrind -v --tool=memcheck --leak-check=full --log-file=valgrindlogs/valgrind.log ./a.out
+valgrind -v --tool=memcheck --leak-check=full --log-file=logs/valgrind.log ./a.out
 
 ############
-G_DEBUG=gc-friendly valgrind -v --tool=memcheck --leak-check=full --log-file=valgrindlogs/valgrind.log ./a.out
+G_DEBUG=gc-friendly valgrind -v --tool=memcheck --leak-check=full --log-file=logs/valgrind.log ./a.out
