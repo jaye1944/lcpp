@@ -1,0 +1,17 @@
+==3721== HEAP SUMMARY: [mapcheck_string.cpp]
+==3721==     in use at exit: 0 bytes in 0 blocks
+==3721==   total heap usage: 40 allocs, 40 frees, 6,150 bytes allocated
+==3721== 
+==3721== All heap blocks were freed -- no leaks are possible
+==3721== 
+==3721== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==3721== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+==3707== HEAP SUMMARY: [mapcheck_char.cpp]
+==3707==     in use at exit: 0 bytes in 0 blocks
+==3707==   total heap usage: 30 allocs, 30 frees, 620 bytes allocated
+==3707== 
+==3707== All heap blocks were freed -- no leaks are possible
+==3707== 
+==3707== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==3707== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
