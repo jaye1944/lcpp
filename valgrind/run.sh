@@ -1,14 +1,16 @@
+DIR=std::map
 FILE=a.out
+LOG=valgrind.log
+LOGNAME=$DIR'_'$LOG
 
-g++ -ggdb mapcheck_char.cpp
+g++ -ggdb $DIR/mapcheck_char.cpp
 
 if [ "$#" -ne 1 ]; then
   rm $FILE
 fi
 
-#g++ -ggdb mapcheck.cpp
 if [ -e $FILE ]
  then
- valgrind -v --tool=memcheck --leak-check=full --log-file=logs/valgrind.log ./a.out
+ valgrind -v --tool=memcheck --leak-check=full --log-file=logs/$LOGNAME ./$FILE
 fi
 #valgrind -v --tool=memcheck --leak-check=full --log-file=logs/valgrind.log ./a.out
