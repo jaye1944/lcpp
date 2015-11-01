@@ -2,3 +2,5 @@ cmake/build/*
 valgrind/logs/
 valgrind/a.out
 a.out
+linklist_valgrind/a.out
+linklist_valgrind/valgrind.log

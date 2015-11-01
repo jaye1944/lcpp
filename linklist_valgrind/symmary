@@ -1,0 +1,9 @@
+==4604== 
+==4604== HEAP SUMMARY:
+==4604==     in use at exit: 0 bytes in 0 blocks
+==4604==   total heap usage: 6 allocs, 6 frees, 96 bytes allocated
+==4604== 
+==4604== All heap blocks were freed -- no leaks are possible
+==4604== 
+==4604== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==4604== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
