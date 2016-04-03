@@ -4,3 +4,5 @@ valgrind/a.out
 a.out
 linklist_valgrind/a.out
 linklist_valgrind/valgrind.log
+gtest/googletest-master/*
+python/a.out
