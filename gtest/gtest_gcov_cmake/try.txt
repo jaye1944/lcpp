@@ -1,0 +1,30 @@
+
+My first attempt was like this:
+
+add_executable(hello main.cpp)
+set(CMAKE_CXX_FLAGS -fprofile-arcs -ftest-coverage)
+target_link_libraries(hello -fprofile-arcs)
+
+As recommended, I've created a build dir and did the compilation from there:
+
+$ cmake ..
+$ make
+$ ./hello
+
+
+The problem is that no coverage data was produced.
+
+Then I've changed the CMakeLists.txt to this:
+
+include(CTest)
+add_executable(hello main.cpp)
+add_test(hello_test ${EXECUTABLE_OUTPUT_PATH}/hello)
+add_definitions(-fprofile-arcs -ftest-coverage)
+target_link_libraries(hello -fprofile-arcs)
+
+Then run this from the build dir:
+
+$ cmake ..
+$ make
+$ make test
+$ make ExperimentalCoverage
