@@ -6,3 +6,9 @@ linklist_valgrind/a.out
 linklist_valgrind/valgrind.log
 gtest/googletest-master/*
 python/a.out
+gtest/gcov/*.gcov
+gtest/gcov/*.gcda
+gtest/gcov/*.gcno
+gtest/gcov/a.out
+gtest/gcov/out/*
+gtest/gcov/coverage.info
