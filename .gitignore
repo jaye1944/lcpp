@@ -13,3 +13,4 @@ gtest/gcov/a.out
 gtest/gcov/out/*
 gtest/gcov/coverage.info
 gtest/gtest_gcov_cmake/build/*
+cpp11/a.out
