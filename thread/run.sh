@@ -6,7 +6,7 @@ LOGNAME=$DIR'_'$LOG
 
 g++ -std=c++11 -pthread -ggdb $SOURCE_FILE
 ./$FILE
-
+rm $FILE
 #if [ "$#" -ne 1 ]; then
  # rm $FILE
 #fi
