@@ -1,0 +1,31 @@
+Thread - 3 119 => write to map 4
+Thread - 3 12 => write to map 4
+Thread - 3 120 => write to map 4
+Thread - 3 121 => write to map 4
+
+Program received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0xb6afeb40 (LWP 12461)]
+0xb7f39d54 in ?? () from /usr/lib/i386-linux-gnu/libstdc++.so.6
+(gdb) bt
+#0  0xb7f39d54 in ?? () from /usr/lib/i386-linux-gnu/libstdc++.so.6
+#1  0xb7f39fb8 in std::_Rb_tree_insert_and_rebalance(bool, std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::_Rb_tree_node_base&) ()
+   from /usr/lib/i386-linux-gnu/libstdc++.so.6
+#2  0x0804b35c in std::_Rb_tree<std::string, std::pair<std::string const, std::string>, std::_Select1st<std::pair<std::string const, std::string> >, std::less<std::string>, std::allocator<std::pair<std::string const, std::string> > >::_M_insert_<std::pair<std::string const, std::string> >(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, std::string>&&) (this=0x8051210 <g_keyResult>, __x=0x0, 
+    __p=0xb5703aa8, __v=...) at /usr/include/c++/4.7/bits/stl_tree.h:981
+#3  0x0804aaed in std::_Rb_tree<std::string, std::pair<std::string const, std::string>, std::_Select1st<std::pair<std::string const, std::string> >, std::less<std::string>, std::allocator<std::pair<std::string const, std::string> > >::_M_insert_unique_<std::pair<std::string const, std::string> >(std::_Rb_tree_const_iterator<std::pair<std::string const, std::string> >, std::pair<std::string const, std::string>&&) (this=0x8051210 <g_keyResult>, 
+    __position=..., __v=...) at /usr/include/c++/4.7/bits/stl_tree.h:1363
+#4  0x0804a3c4 in std::map<std::string, std::string, std::less<std::string>, std::allocator<std::pair<std::string const, std::string> > >::insert<std::pair<std::string const, std::string>, void>(std::_Rb_tree_const_iterator<std::pair<std::string const, std::string> >, std::pair<std::string const, std::string>&&) (this=0x8051210 <g_keyResult>, __position=..., __x=...) at /usr/include/c++/4.7/bits/stl_map.h:585
+#5  0x08049f27 in std::map<std::string, std::string, std::less<std::string>, std::allocator<std::pair<std::string const, std::string> > >::operator[]
+    (this=0x8051210 <g_keyResult>, __k=...) at /usr/include/c++/4.7/bits/stl_map.h:458
+#6  0x080495f1 in set_page (url=..., tid=2) at mutual_crash.cpp:26
+#7  0x0804c436 in std::_Bind_simple<void (*(char const*, int))(std::string const&, int)>::_M_invoke<0u, 1u>(std::_Index_tuple<0u, 1u>) (
+    this=0x80521b4) at /usr/include/c++/4.7/functional:1598
+#8  0x0804c30f in std::_Bind_simple<void (*(char const*, int))(std::string const&, int)>::operator()() (this=0x80521b4)
+    at /usr/include/c++/4.7/functional:1586
+#9  0x0804c2c4 in std::thread::_Impl<std::_Bind_simple<void (*(char const*, int))(std::string const&, int)> >::_M_run() (this=0x80521a8)
+    at /usr/include/c++/4.7/thread:115
+#10 0xb7f7f617 in ?? () from /usr/lib/i386-linux-gnu/libstdc++.so.6
+#11 0xb7ea6d78 in start_thread (arg=0xb6afeb40) at pthread_create.c:311
+#12 0xb7dde3de in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:131
+(gdb) 
+

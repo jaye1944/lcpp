@@ -12,7 +12,7 @@
 */
 
 std::map<std::string, std::string> g_keyResult;
-std::mutex g_keyResult_mutex;
+//std::mutex g_keyResult_mutex;
 
 void set_page(const std::string &url,int tid)
 {

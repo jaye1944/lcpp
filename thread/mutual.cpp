@@ -7,6 +7,7 @@
 #include <memory>
 #define NO_THREAD 10
 #define ELEMENTS 10000
+// std::this_thread::sleep_for(std::chrono::milliseconds(10));
 /*
 5 thread write to map and other 5 threads read from map
 */
@@ -14,25 +15,23 @@
 std::map<std::string, std::string> g_keyResult;
 std::mutex g_keyResult_mutex;
 
-void save_page(const std::string &url,int start)
+void set_page(const std::string &url,int tid)
 {
-    // simulate a long page fetch
-
-    std::string result = "fake content";
-    //std::lock_guard<std::mutex> guard(g_keyResult_mutex);
+	// simulate writing
+	std::string t_id = std::to_string(tid);
+    std::string result = "write to map " + t_id;
+    std::lock_guard<std::mutex> guard(g_keyResult_mutex);
 	for (int k = 0; k < ELEMENTS ; k++)
 	{
 		std::string ke = std::to_string(k);
-		//std::this_thread::sleep_for(std::chrono::milliseconds(1));
 		g_keyResult[ke] = result;
 	}
 }
 
 void get_page(const std::string &url,int tid)
 {
-    // simulate a long page fetch
-    //std::lock_guard<std::mutex> guard(g_keyResult_mutex);
-   // std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    // simulate reading
+    std::lock_guard<std::mutex> guard(g_keyResult_mutex);
     for (const auto &pair : g_keyResult) {
         std::cout << "Thread - " << tid << " " << pair.first << " => " << pair.second << '\n';
     }
@@ -54,7 +53,7 @@ int main()
 		else
 		{
 			std::cout << "Write i " << i << std::endl;
-			art[i] = std::thread(save_page, "add to map",i);
+			art[i] = std::thread(set_page, "add to map",i);
 		}
     }
 
