@@ -12,7 +12,8 @@
 5 thread write to map and other 5 threads read from map
 */
 
-std::map<std::string, std::string> g_keyResult;
+typedef std::map<std::string, std::string> MapResult;
+MapResult *g_keyResult;
 std::mutex g_keyResult_mutex;
 
 void set_page(const std::string &url,int tid)
@@ -24,7 +25,7 @@ void set_page(const std::string &url,int tid)
 	for (int k = 0; k < ELEMENTS ; k++)
 	{
 		std::string ke = std::to_string(k);
-		g_keyResult[ke] = result;
+		(*g_keyResult)[ke] = result;
 	}
 }
 
@@ -32,7 +33,7 @@ void get_page(const std::string &url,int tid)
 {
     // simulate reading
     std::lock_guard<std::mutex> guard(g_keyResult_mutex);
-    for (const auto &pair : g_keyResult) {
+    for (const auto &pair : *g_keyResult) {
         std::cout << "Thread - " << tid << " " << pair.first << " => " << pair.second << '\n';
     }
 }
@@ -42,6 +43,7 @@ int main()
 {
 
     std::thread art[NO_THREAD];
+    g_keyResult = new MapResult();
 	std::chrono::time_point<std::chrono::system_clock> start, end;
 	start = std::chrono::system_clock::now();
     //read from map
@@ -67,7 +69,7 @@ int main()
 	auto mili = std::chrono::duration_cast<std::chrono::milliseconds>(elapsed_seconds);
 	std::cout << elapsed_seconds.count() << std::endl;
 	std::cout << mili.count() << std::endl;
-	
+	delete g_keyResult;
 	//t1.join();
 
 }

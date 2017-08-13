@@ -5,14 +5,16 @@
 #include <thread>
 #include <mutex>
 #include <memory>
+#include <atomic>
 #define NO_THREAD 10
 #define ELEMENTS 10000
 // std::this_thread::sleep_for(std::chrono::milliseconds(10));
 /*
 5 thread write to map and other 5 threads read from map
 */
-
-std::map<std::string, std::string> g_keyResult;
+typedef std::map<std::string, std::string> MapResult;
+//std::map<std::string, std::string> g_keyResult;
+std::atomic<MapResult*> g_keyResult;
 std::mutex g_keyResult_mutex;
 
 void set_page(const std::string &url,int tid)
@@ -20,19 +22,20 @@ void set_page(const std::string &url,int tid)
 	// simulate writing
 	std::string t_id = std::to_string(tid);
     std::string result = "write to map " + t_id;
-    std::lock_guard<std::mutex> guard(g_keyResult_mutex);
 	for (int k = 0; k < ELEMENTS ; k++)
 	{
 		std::string ke = std::to_string(k);
-		g_keyResult[ke] = result;
+		MapResult* p = (MapResult*)g_keyResult;
+		//p->insert(std::make_pair(ke,result));
+		(*p)[ke] = result;
 	}
 }
 
 void get_page(const std::string &url,int tid)
 {
     // simulate reading
-    std::lock_guard<std::mutex> guard(g_keyResult_mutex);
-    for (const auto &pair : g_keyResult) {
+    MapResult* p = (MapResult*)g_keyResult;
+    for (const auto &pair : *p) {
         std::cout << "Thread - " << tid << " " << pair.first << " => " << pair.second << '\n';
     }
 }
@@ -42,6 +45,7 @@ int main()
 {
 
     std::thread art[NO_THREAD];
+    g_keyResult = new MapResult();
 	std::chrono::time_point<std::chrono::system_clock> start, end;
 	start = std::chrono::system_clock::now();
     //read from map
