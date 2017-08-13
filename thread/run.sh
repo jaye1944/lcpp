@@ -1,10 +1,19 @@
-DIR=shaired
+DIR=${PWD##*/}
 SOURCE_FILE=$1
 FILE=a.out
 LOG=valgrind.log
 LOGNAME=$DIR'_'$LOG
-
+#echo $DIR
 g++ -std=c++11 -pthread -ggdb $SOURCE_FILE
+
+if [ "$2" == "c" ]; 
+then
+	if [ "$3" == "r" ]; 
+	then
+		rm $FILE	
+	fi
+ 	exit
+fi
 
 if [ "$2" == "gd" ]; 
 then

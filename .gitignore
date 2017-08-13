@@ -2,6 +2,7 @@ cmake/build/*
 valgrind/logs/
 valgrind/a.out
 a.out
+run.sh~
 linklist_valgrind/a.out
 linklist_valgrind/valgrind.log
 gtest/googletest-master/*
