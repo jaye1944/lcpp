@@ -43,6 +43,7 @@ int main()
   //A *onjA = new A();
   B *onjB = new B();
   std::cout << "keep " << onjB->h.keep << std::endl;
+  delete onjB;
 }
 
 /*
