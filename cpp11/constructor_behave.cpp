@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cassert>
 class A;
 class H 
 {
@@ -14,11 +15,14 @@ class H
 class A 
 {
   public:
+  A *me;
   H h;
   A()
   :h(this)
   {
-   std::cout << "A " << this  << std::endl;   
+   std::cout << "A " << this  << std::endl;
+   assert(NULL == me);
+   me = this;
   }  
 };
 
