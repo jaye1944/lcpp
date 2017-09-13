@@ -15,7 +15,6 @@ class A
 {
   public:
   H h;
-  int k = 0;
   A()
   :h(this)
   {
@@ -27,7 +26,6 @@ class A
 class B : public A 
 {
   public:
-  int k = 12;
   B()
   {
  
