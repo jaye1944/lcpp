@@ -43,3 +43,8 @@ int main()
   std::cout << "keep " << onjB->h.keep << std::endl;
 }
 
+/*
+A 0x2381320
+B 0x2381320
+keep 0x2381320
+*/
